@@ -1,3 +1,4 @@
+/* --- 1. СБРОС СТИЛЕЙ И ГЛОБАЛЬНЫЕ НАСТРОЙКИ --- */
 *,
 *::before,
 *::after {
@@ -8,14 +9,15 @@ html {
   block-size: 100%;
 }
 
-.page {
-  inline-size: 1200px;
-  block-size: 100%;
-  margin: auto;
+body {
+  margin: 0;
+  padding: 0;
   color: #fff;
   font-family: 'Fira Sans Condensed', sans-serif;
   font-size: 18px;
   background-color: #1b1919;
+  overflow-x: hidden;
+  min-height: 100%;
 }
 
 h1,
@@ -37,7 +39,355 @@ ol {
   list-style: none;
 }
 
-/* Кастомный скроллбар */
+/* Наследование для форм и сброс системных стилей */
+input,
+button,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  appearance: none;
+}
+
+
+/* Курсор для всех кликабельных элементов */
+.button,
+.search-form__label,
+.content__card-link,
+.search-form__pseudo-checkbox {
+  cursor: pointer;
+}
+
+/* скрытые элементы (доступность) */
+.visually-hidden {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* --- 2. ЛЕЙАУТ СТРАНИЦЫ --- */
+
+.page {
+  width: 1200px;
+  /* Фиксируем ширину как в Figma */
+  margin: 0 auto;
+  min-height: 100vh;
+  padding: 133px 30px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 30px;
+  width: 1140px;
+  height: 534px;
+}
+
+/* --- 3. ЛЕВАЯ ЧАСТЬ --- */
+
+.result {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Поиск */
+.search-form {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 40px;
+  width: 100%;
+}
+
+.search-form__fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.search-form__fieldset:nth-child(2) {
+  margin-bottom: 5px;
+  /* — это поднимет весь блок */
+}
+
+.search-form__fieldset-title {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  margin-bottom: 2px;
+}
+
+/* Текстовое поле */
+.search-form__textfield {
+  background-color: transparent;
+  border: none;
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  width: 225px;
+  padding: 1px 0;
+}
+
+
+.search-form__textfield::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Чекбокcы */
+.search-form__checkbox-list {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+
+.search-form__label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  width: fit-content;
+}
+
+.search-form__label:hover .search-form__label-text {
+  text-decoration: underline;
+}
+
+/* Кастомная рамка фокуса для лейбла чекбокса */
+.search-form__label:has(:focus-visible) {
+  outline: 2px solid white;
+  outline-offset: 2px;
+}
+
+.search-form__pseudo-checkbox {
+  width: 19px;
+  height: 19px;
+  border: 1px solid #fff;
+  padding: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-form__pseudo-checkbox::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  opacity: 0;
+}
+
+.search-form__checkbox:checked+.search-form__pseudo-checkbox::after {
+  opacity: 1;
+}
+
+/* Список видео */
+.content__list-container {
+  position: relative;
+  height: 298px;
+  width: 100%;
+  max-width: 399px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  /* Запрещаем горизонтальный сдвиг */
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  /* Убираем любые дефолтные фоны */
+  background: none !important;
+}
+
+.content__list {
+  display: flex;
+  flex-direction: column;
+  gap: 31px;
+  margin-bottom: 16px;
+}
+
+.content__list-item {
+  padding: 0 3px;
+}
+
+/* Карточка в спиcке */
+.content__card-link {
+  display: block;
+  color: #ffffff;
+  text-decoration: none;
+  transition: background-color 0.1s ease;
+}
+
+.content__card-link:hover {
+  text-decoration: underline;
+}
+
+.content__card-link:active,
+.content__card-link_current {
+  background-color: #545050;
+}
+
+.content__card-link:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 4px;
+}
+
+.content__video-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.content__video-card-thumbnail {
+  width: 194px;
+  height: 103px;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+
+.content__video-card-description-container {
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.content__video-card-title {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  font-size: 30px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.content__video-card-description {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+}
+
+/* --- 4. ПРАВАЯ ЧАСТЬ (ГЛАВНОЕ ВИДЕО И ЗАГОЛОВОК) --- */
+
+.content__details {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  font-size: 75px;
+  line-height: 94%;
+  text-transform: uppercase;
+  margin: 0 0 18px;
+}
+.content__accent {
+  color: #545050;
+}
+
+.result__video-container {
+  position: relative;
+  width: 711px;
+  height: 386px;
+  margin-bottom: 16px;
+}
+
+.result__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* --- 5. КНОПКИ--- */
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: transparent;
+  border: 1px solid #ffffff;
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+  padding-block: 5px;
+  padding-inline: 20px;
+  transition: background-color 0.2s ease;
+  flex-shrink: 0;
+  line-height: 1.1;
+}
+
+.button:hover {
+  text-decoration: underline;
+}
+
+.button:focus,
+.search-form__textfield:focus,
+.content__card-link:focus,
+.search-form__checkbox:focus {
+  outline: none;
+}
+
+/* 2. Настраиваем рамку строго по макету */
+.button:focus-visible,
+.search-form__textfield:focus-visible,
+.content__card-link:focus-visible {
+  outline: 1px solid #ffffff;
+  outline-offset: 1px;
+}
+
+
+.search-form__label:has(:focus-visible) {
+  outline: 1px solid #ffffff;
+  outline-offset: 1px;
+}
+
+
+.button:active {
+  background-color: #545050;
+  color: #ffffff;
+}
+
+/* 3. Специфика для "Найти" */
+.search-form__submit-button {
+  width: 194px;
+  align-self: flex-end;
+}
+
+/* 2. Специфика для "Показать еще" */
+.more-button {
+  width: 100%;
+  display: flex;
+  margin: 0;
+}
+
+/* --- 6. ПРЕЛОАДЕР И СКРОЛЛБАР --- */
+
+.preloader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+
+
 .custom-scrollbar::-webkit-scrollbar {
   width: 4px;
 }
