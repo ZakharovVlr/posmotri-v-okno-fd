@@ -6,15 +6,17 @@
 }
 
 html {
-  block-size: 100%;
+  height: 100%;
 }
 
 body {
   margin: 0;
+  padding: 0;
   background-color: #1b1919;
   color: #fff;
   font-family: 'Fira Sans Condensed', sans-serif;
   font-size: 18px;
+  min-height: 100%;
 }
 
 h1,
@@ -73,6 +75,7 @@ textarea {
   flex-direction: column;
   align-items: center;
   width: 1200px;
+  margin: 0 auto;
   min-height: 100vh;
   padding: 133px 30px 20px;
 }
