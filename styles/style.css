@@ -50,7 +50,6 @@ textarea {
   appearance: none;
 }
 
-
 /* Курсор для всех кликабельных элементов */
 .button,
 .search-form__label,
@@ -73,8 +72,8 @@ textarea {
 /* --- 2. ЛЕЙАУТ СТРАНИЦЫ --- */
 
 .page {
-  width: 1200px;
-  /* Фиксируем ширину как в Figma */
+  width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
   min-height: 100vh;
   padding: 133px 30px 20px;
@@ -119,7 +118,6 @@ textarea {
 
 .search-form__fieldset:nth-child(2) {
   margin-bottom: 5px;
-  /* — это поднимет весь блок */
 }
 
 .search-form__fieldset-title {
@@ -138,7 +136,6 @@ textarea {
   width: 225px;
   padding: 1px 0;
 }
-
 
 .search-form__textfield::placeholder {
   color: rgba(255, 255, 255, 0.7);
@@ -193,7 +190,6 @@ textarea {
 
 /* Список видео */
 .content__list-container {
-  position: relative;
   height: 298px;
   width: 100%;
   max-width: 399px;
@@ -268,6 +264,7 @@ textarea {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  width: 195px;
 }
 
 .content__video-card-description {
@@ -291,15 +288,23 @@ textarea {
   text-transform: uppercase;
   margin: 0 0 18px;
 }
+
 .content__accent {
   color: #545050;
 }
 
 .result__video-container {
-  position: relative;
+  display: grid;
   width: 711px;
   height: 386px;
   margin-bottom: 16px;
+}
+
+.result__video-container,
+.content__list-container {
+  display: grid;
+  align-items: center;
+  justify-items: center;
 }
 
 .result__video {
@@ -341,8 +346,7 @@ textarea {
 
 /* 2. Настраиваем рамку строго по макету */
 .button:focus-visible,
-.search-form__textfield:focus-visible,
-.content__card-link:focus-visible {
+.search-form__textfield:focus-visible {
   outline: 1px solid #ffffff;
   outline-offset: 1px;
 }
@@ -367,26 +371,29 @@ textarea {
 
 /* 2. Специфика для "Показать еще" */
 .more-button {
-  width: 100%;
+  width: 99%;
   display: flex;
   margin: 0;
+  margin-right: 3px;
 }
 
 /* --- 6. ПРЕЛОАДЕР И СКРОЛЛБАР --- */
 
 .preloader {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 10;
 }
 
+.preloader,
+.result__video,
+.content__list {
+  grid-area: 1 / 1;
+}
 
 .custom-scrollbar::-webkit-scrollbar {
   width: 4px;
