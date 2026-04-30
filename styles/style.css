@@ -370,10 +370,6 @@ textarea {
 }
 
 /* --- 6. ПРЕЛОАДЕР И СКРОЛЛБАР --- */
-.result__video-container,
-.content__list-container {
-  display: grid;
-}
 
 /* Видео/список и прелоадер в одну ячейку */
 .preloader,
