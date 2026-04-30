@@ -7,6 +7,8 @@
 
 html {
   height: 100%;
+  /* Резервируем место под скроллбар, чтобы он не смещал центровку */
+  scrollbar-gutter: stable;
 }
 
 body {
@@ -16,6 +18,9 @@ body {
   color: #fff;
   font-family: 'Fira Sans Condensed', sans-serif;
   font-size: 18px;
+  /* Центрируем через flex на body — это самый стабильный способ для роботов */
+  display: flex;
+  justify-content: center;
   min-height: 100%;
 }
 
@@ -74,8 +79,7 @@ textarea {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 1200px;
-  margin: 0 auto;
+  width: 1200px; /* Строго как в Figma */
   min-height: 100vh;
   padding: 133px 30px 20px;
 }
