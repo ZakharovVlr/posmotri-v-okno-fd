@@ -1,4 +1,3 @@
-/* --- 1. СБРОС СТИЛЕЙ И ГЛОБАЛЬНЫЕ НАСТРОЙКИ --- */
 *,
 *::before,
 *::after {
@@ -6,9 +5,7 @@
 }
 
 html {
-  height: 100%;
-  /* Резервируем место под скроллбар, чтобы он не смещал центровку */
-  scrollbar-gutter: stable;
+  block-size: 100%;
 }
 
 body {
@@ -79,7 +76,8 @@ textarea {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 1200px; /* Строго как в Figma */
+  width: 1200px;
+  margin: 0 auto;
   min-height: 100vh;
   padding: 133px 30px 20px;
 }
@@ -89,7 +87,7 @@ textarea {
   flex-direction: row;
   align-items: flex-end;
   gap: 30px;
-  width: 1140px;
+  inline-size: 1140px;
 }
 
 /* --- 3. ЛЕВАЯ ЧАСТЬ --- */
@@ -303,9 +301,8 @@ textarea {
 
 .result__video-container,
 .content__list-container {
-  display: grid;
-  align-items: center;
-  justify-items: center;
+  position: relative;
+  overflow: hidden;
 }
 
 .result__video {
@@ -373,17 +370,12 @@ textarea {
 }
 
 /* --- 6. ПРЕЛОАДЕР И СКРОЛЛБАР --- */
-
-.preloader {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 10;
+.result__video-container,
+.content__list-container {
+  display: grid;
 }
 
+/* Видео/список и прелоадер в одну ячейку */
 .preloader,
 .result__video,
 .content__list {
