@@ -8,19 +8,6 @@ html {
   block-size: 100%;
 }
 
-body {
-  margin: 0;
-  padding: 0;
-  background-color: #1b1919;
-  color: #fff;
-  font-family: 'Fira Sans Condensed', sans-serif;
-  font-size: 18px;
-  /* Центрируем через flex на body — это самый стабильный способ для роботов */
-  display: flex;
-  justify-content: center;
-  min-height: 100%;
-}
-
 h1,
 h2,
 h3,
@@ -73,13 +60,17 @@ textarea {
 /* --- 2. ЛЕЙАУТ СТРАНИЦЫ --- */
 
 .page {
+  inline-size: 1200px;
+  margin: 0 auto;
+  background-color: #1b1919;
+  color: #fff;
+  font-family: 'Fira Sans Condensed', sans-serif;
+  font-size: 18px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  width: 1200px;
-  margin: 0 auto;
   min-height: 100vh;
-  padding: 133px 30px 20px;
 }
 
 .content {
@@ -88,6 +79,7 @@ textarea {
   align-items: flex-end;
   gap: 30px;
   inline-size: 1140px;
+  flex-shrink: 0;
 }
 
 /* --- 3. ЛЕВАЯ ЧАСТЬ --- */
@@ -120,7 +112,7 @@ textarea {
 }
 
 .search-form__fieldset-title {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Fira Sans Condensed', sans-serif;
   font-weight: 400;
   font-size: 16px;
   margin-bottom: 2px;
@@ -193,13 +185,10 @@ textarea {
   width: 100%;
   max-width: 399px;
   overflow-y: auto;
-  overflow-x: hidden;
-  /* Запрещаем горизонтальный сдвиг */
   display: flex;
   flex-direction: column;
   gap: 20px;
-  /* Убираем любые дефолтные фоны */
-  background: none !important;
+  flex-shrink: 0;
 }
 
 .content__list {
@@ -247,7 +236,7 @@ textarea {
   width: 194px;
   height: 103px;
   flex-shrink: 0;
-  object-fit: cover;
+  object-position: center;
 }
 
 .content__video-card-description-container {
@@ -267,7 +256,7 @@ textarea {
 }
 
 .content__video-card-description {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Fira Sans Condensed', sans-serif;
   font-size: 16px;
 }
 
@@ -302,7 +291,6 @@ textarea {
 .result__video-container,
 .content__list-container {
   position: relative;
-  overflow: hidden;
 }
 
 .result__video {
@@ -363,7 +351,6 @@ textarea {
 
 /* 2. Специфика для "Показать еще" */
 .more-button {
-  width: 99%;
   display: flex;
   margin: 0;
   margin-right: 3px;
